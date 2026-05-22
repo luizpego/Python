@@ -1,6 +1,5 @@
 notas = []
 nome = []
-import os
 
 def cadastro():
     while True:
