@@ -1,0 +1,99 @@
+notas = []
+nome = []
+import os
+
+def cadastro():
+    while True:
+        flag = 0
+        item = 0
+        item = int(input("Digite a nota do aluno(Notas de 0 a 100): "))
+        notas.append(item)
+        Nome = input("Digite o nome do aluno: ")
+        nome.append(Nome)
+        print("Você deseja inserir mais alguma nota?")
+        while flag !=1 or flag !=2:
+            flag = int(input("1-Sim, 2-Não: "))
+            if flag !=1 and flag !=2:
+                print("Opção inválida!")
+            else:
+                break
+
+        if flag == 2:
+            break
+        
+
+
+def media():
+    quantidade = len(notas)
+    soma = 0
+    media = 0
+    if quantidade == 0:
+        print("A lista está vazia")
+    else:
+
+        for j in range(quantidade):
+            soma += notas[j]
+            media = soma / quantidade
+
+
+        print(f"O valor da média é:{media}")
+
+
+def listar():
+    quantidade = len(notas)
+    if quantidade == 0:
+        print("A lista está vazia")
+    else:
+        for k in range(quantidade):
+            print(f"{nome[k]  ,  notas[k]}\n")
+
+
+def menu():
+    print("Bem-vindo ao sistema de cadastro de alunos!")
+    print("1-Cadastrar alunos")
+    print("2-Media das notas")
+    print("3-Listar nome e notas")
+    print("4-Maior e menor nota")
+    print("5-Encerrar")
+    Item = int(input("Digite a opção desejada: "))
+    return Item
+
+def menor_maior():
+    quantidade = len(notas)
+    menor = 0
+    maior = 0
+    if quantidade == 0:
+        print("A lista está vazia")
+    else:
+        for j in range(quantidade):
+            if notas[menor]>notas[j]:
+                menor = j
+            if notas[maior]<notas[j]:
+                maior = j
+
+
+        print(f"A maior nota é {notas[maior]} e a menor é {notas[menor]}")
+while True:
+    
+    opcao = menu()
+    if opcao !=1 and opcao !=2 and opcao !=3 and opcao !=4 and opcao !=5:
+        print("Opção inválida!")
+    else:
+        if opcao == 1:
+            cadastro()
+        elif opcao == 2:
+            media()
+        elif opcao == 3:
+            listar()
+        elif opcao == 4:
+            menor_maior()
+
+
+    if opcao == 5:
+        print("Encerrando...")
+        break
+
+
+    
+        
+        
