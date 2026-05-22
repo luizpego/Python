@@ -10,7 +10,7 @@ def cadastro():
         Nome = input("Digite o nome do aluno: ")
         nome.append(Nome)
         print("Você deseja inserir mais alguma nota?")
-        while flag !=1 or flag !=2:
+        while flag !=1 and flag !=2:
             flag = int(input("1-Sim, 2-Não: "))
             if flag !=1 and flag !=2:
                 print("Opção inválida!")
