@@ -1,0 +1,39 @@
+{% extends "registration/base.html" %}
+{% block title %}Cursos | DevClass{% endblock %}
+{% block content %}
+<section class="page-hero compact container reveal">
+    <span class="eyebrow">Catálogo DevClass</span>
+    <h1>Encontre seu próximo <span>curso.</span></h1>
+    <p>Escolha uma tecnologia e dê o próximo passo na sua jornada como desenvolvedor.</p>
+    <form method="POST" class="search-form">
+        {% csrf_token %}
+        <label class="sr-only" for="curso">Buscar curso</label>
+        <span aria-hidden="true">⌕</span>
+        <input id="curso" type="text" name="curso" placeholder="Digite Python, Java, Django ou HTML..." required>
+        <button class="button button-primary" type="submit">Buscar</button>
+    </form>
+    {% if erro %}<p class="alert alert-error" role="alert">{{ erro }}</p>{% endif %}
+</section>
+
+<section class="course-section container">
+    <div class="course-grid">
+        {% for i in cursos %}
+        <article class="course-card reveal">
+            <div class="course-card-top">
+                <span class="course-code">{% cycle 'PY' 'JV' 'DJ' 'HT' %}</span>
+                {% if i.publicado %}<span class="tag">Disponível</span>{% endif %}
+            </div>
+            <h2>{{ i.titulo }}</h2>
+            <p>{{ i.descricao|truncatewords:25 }}</p>
+            <div class="course-meta"><span>Professor</span><strong>{{ i.professor.nome }}</strong></div>
+            <div class="course-footer">
+                <div><small>Investimento</small><strong>R$ {{ i.preco }}</strong></div>
+                <a class="card-link" href="{{ i.link }}">Ver curso <span>→</span></a>
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty-state"><span>⌕</span><h2>Nenhum curso cadastrado</h2><p>Novos conteúdos aparecerão aqui em breve.</p></div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
